@@ -6,6 +6,7 @@ import Home from "../screens/home/Home.screen";
 import Contact from "../screens/contact/Contact.screen";
 import ProductDetailScreen from "../screens/productDetail/ProductDetail.screen";
 import { CustomHeader } from "../component/CustomHeader.component";
+import FavouriteScreen from "../screens/Favourite.screen";
 
 
 const Stack = createStackNavigator();
@@ -39,4 +40,14 @@ const ContactStackNavigator = () => {
   );
 }
 
-export { HomeStackNavigator, ContactStackNavigator };
+const FavouriteStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Favourite" component={FavouriteScreen} />
+    </Stack.Navigator>
+  );
+}
+
+
+
+export { HomeStackNavigator, ContactStackNavigator, FavouriteStackNavigator };

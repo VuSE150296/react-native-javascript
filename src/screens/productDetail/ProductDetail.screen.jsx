@@ -2,11 +2,17 @@
 import { View, Text, Image, Button, Pressable } from "react-native";
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { asyncStorage, storeData } from "../../data/asyncStorage";
 
 export default function ProductDetailScreen({ navigation, route: { params: { product } }, ...props }) {
-    const addToFavourite = () => {
+    const addToFavourite = async () => {
+        const old = await asyncStorage.retrieveData("favouriteLists")
+        const oldFavouriteLists = JSON.parse(old || '[]') || [];
 
+        oldFavouriteLists.push(product);
+        await asyncStorage.storeData("favouriteLists", JSON.stringify(oldFavouriteLists))
     }
+
     return (
 
         <View className="px-4 mt-12">

@@ -2,8 +2,9 @@
 
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ContactStackNavigator, HomeStackNavigator } from "./StatckNavigator";
+import { ContactStackNavigator, FavouriteStackNavigator, HomeStackNavigator } from "./StatckNavigator";
 import { Ionicons } from '@expo/vector-icons';
+import FavouriteScreen from "../screens/Favourite.screen";
 
 
 const Tab = createBottomTabNavigator();
@@ -17,7 +18,7 @@ const screens = [
   },
   {
     tabBarLabel: "Favourite",
-    component: ContactStackNavigator,
+    component: FavouriteStackNavigator,
     tabBarIcon: ({ color, size }) => (
       <Ionicons name="heart" color={color} size={size} />
     ),
