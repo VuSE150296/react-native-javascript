@@ -7,7 +7,7 @@ import ItemCard from "./ItemCard";
 
 
 
-export default function FavouriteScreen() {
+export default function HomeScreen({ navigation }) {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState();
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -16,7 +16,8 @@ export default function FavouriteScreen() {
         setSelectedCategory(value.id);
     }
     const handlePressableProduct = (value) => {
-        setSelectedProduct(value)
+        setSelectedProduct(value);
+        navigation.navigate("ProductDetail", { product: value })
     }
     useEffect(() => {
         CategoryService.listCategory().then(res => setCategories(res));
@@ -24,11 +25,7 @@ export default function FavouriteScreen() {
     }, [])
     return (
 
-        <View className="px-4 mt-12">
-            <Text className="text-3xl text-black font-semibold">
-                Plant {"\n"}
-                is for room
-            </Text>
+        <View className="px-4">
             <View>
                 <ScrollView horizontal
                     showsHorizontalScrollIndicator={false}
@@ -67,7 +64,7 @@ export default function FavouriteScreen() {
                         products.map(product => {
                             return (
                                 <Pressable onPress={() => handlePressableProduct(product)} key={product.id}>
-                                    <ItemCard key={product.id} data={product}/>
+                                    <ItemCard key={product.id} data={product} />
                                 </Pressable>
                             )
                         }
