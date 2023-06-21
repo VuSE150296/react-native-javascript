@@ -4,7 +4,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ContactStackNavigator, FavouriteStackNavigator, HomeStackNavigator } from "./StatckNavigator";
 import { Ionicons } from '@expo/vector-icons';
-import FavouriteScreen from "../screens/Favourite.screen";
+import FavouriteScreen from "../screens/Favourite/Favourite.screen";
 
 
 const Tab = createBottomTabNavigator();

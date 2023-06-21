@@ -8,8 +8,8 @@ export default function ProductDetailScreen({ navigation, route: { params: { pro
     const addToFavourite = async () => {
         const old = await asyncStorage.retrieveData("favouriteLists")
         const oldFavouriteLists = JSON.parse(old || '[]') || [];
-
-        oldFavouriteLists.push(product);
+        if (oldFavouriteLists.findIndex(item => item.id == product.id) < 0)
+            oldFavouriteLists.push(product);
         await asyncStorage.storeData("favouriteLists", JSON.stringify(oldFavouriteLists))
     }
 

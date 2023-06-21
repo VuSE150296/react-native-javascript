@@ -1,9 +1,9 @@
 
 import { Pressable, ScrollView, Text, View } from "react-native";
 import React, { useState, useEffect } from 'react';
-import { asyncStorage } from "../data/asyncStorage";
-import ItemCard from "./home/ItemCard";
+import { asyncStorage } from "../../data/asyncStorage";
 import { useFocusEffect } from "@react-navigation/native";
+import ItemFavourite from "./ItemFavourite.component";
 
 export default function FavouriteScreen() {
     const [favouriteLists, setFavouriteLists] = useState([])
@@ -11,7 +11,6 @@ export default function FavouriteScreen() {
         const fetchData = async () => {
             setFavouriteLists(JSON.parse(await asyncStorage.retrieveData("favouriteLists")) || [])
         };
-
         fetchData();
     });
 
@@ -22,11 +21,11 @@ export default function FavouriteScreen() {
             >
 
                 {favouriteLists &&
-                    favouriteLists.map(product => {
+                    favouriteLists.map((product, index) => {
                         return (
-                            <Pressable >
-                                <ItemCard data={product} />
-                            </Pressable>
+
+                            <ItemFavourite data={product} key={index} />
+
                         )
                     }
 
