@@ -1,22 +1,21 @@
 const data = [
     {
-        id: "1",
         name: "All",
     },
     {
-        id: "2",
+        id: "1",
         name: "Cacti",
     },
     {
-        id: "3",
+        id: "2",
         name: "In pots",
     },
     {
-        id: "4",
+        id: "3",
         name: "Dired flowers",
     },
     {
-        id: "5",
+        id: "4",
         name: "Other",
     }
 ]
@@ -24,4 +23,5 @@ export class CategoryService {
     static async listCategory() {
         return data;
     }
+
 }

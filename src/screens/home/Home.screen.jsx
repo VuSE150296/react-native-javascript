@@ -14,6 +14,7 @@ export default function HomeScreen({ navigation }) {
     const [products, setProducts] = useState([]);
     const handlePressable = (value) => {
         setSelectedCategory(value.id);
+        ProductService.getListByCategoryId(value.id).then(res => setProducts(res));
     }
     const handlePressableProduct = (value) => {
         setSelectedProduct(value);
