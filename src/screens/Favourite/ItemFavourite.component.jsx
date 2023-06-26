@@ -5,29 +5,37 @@ import { asyncStorage } from "../../data/asyncStorage";
 
 export default function ItemFavourite({ data }) {
 
-    const addToFavourite = async () => {
+    const removeFromFavourite = async () => {
         const old = await asyncStorage.retrieveData("favouriteLists")
         let oldFavouriteLists = JSON.parse(old || '[]') || [];
         oldFavouriteLists = oldFavouriteLists.filter(item => item.id != data.id)
         await asyncStorage.storeData("favouriteLists", JSON.stringify(oldFavouriteLists))
     }
+    
     return (
-        <View className="flex-row relative mt-3">
-            <Image
-                source={data.imageUrl}
-                style={{ width: 100, height: 100 }}
-            />
-            <View style={{ paddingLeft: 4, justifyContent: 'space-evenly' }}>
-                <View>
-                    <Text numberOfLines={1} style={{ width: 160, fontWeight: 'bold', fontSize: 16 }}>{data.name}</Text>
-                    <Text style={{ color: 'gray' }}>{data.shortDescription}</Text>
+        <View className="flex-row items-center justify-between"
+            style={{
+                marginTop: 5, marginBottom:10,
+                borderRadius: 10,
+                shadowColor: 'green',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3, 
+                shadowRadius: 4, 
+                elevation: 5
+            }}>
+            <View className='flex-row gap-3'>
+                <Image
+                    source={data.imageUrl}
+                    style={{ width: 100, height: 100 }}
+                />
+                <View style={{ paddingLeft: 4, justifyContent: 'space-evenly' }}>
+                    <Text className='text-xl font-bold'>{data.name}</Text>
+                    <Text className='text-xl font-bold text-start opacity-40'>{data.price} $</Text>
                 </View>
-                <Text>{data.price} $</Text>
             </View>
-
-            <Pressable onPress={() => addToFavourite()} key={data.id}>
-                <View className="absolute bottom-2 right-2 rounded-full p-1" >
-                    <Ionicons size={24} name="close-circle" color="red" />
+            <Pressable onPress={() => removeFromFavourite()} key={data.id}>
+                <View className="p-1 pr-4" >
+                    <Ionicons size={24} name="trash-bin" color="red" />
                 </View>
             </Pressable>
         </View>

@@ -1,3 +1,4 @@
+import { asyncStorage } from "../data/asyncStorage";
 
 const data = [
     {
@@ -114,11 +115,15 @@ export class ProductService {
         return data;
     }
 
-
     static async getListByCategoryId(categoryId) {
         if (typeof categoryId == "string") {
             return data.filter(item => item.categoryId === categoryId)
         }
         return data;
+    }
+    
+    static async checkIsFavorite(id) {
+        const favouriteLists = JSON.parse(await asyncStorage.retrieveData("favouriteLists") || '[]') || [];
+        return !!(favouriteLists.find(item => item.id == id))
     }
 }

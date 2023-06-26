@@ -27,13 +27,8 @@ export default function FavouriteScreen() {
                             <ItemFavourite data={product} key={index} />
 
                         )
-                    }
-
-
-
-                    )
+                    })
                 }
-
             </ScrollView>
 
 

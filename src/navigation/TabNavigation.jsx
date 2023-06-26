@@ -31,6 +31,9 @@ const BottomTabNavigator = () => {
         headerShown: false,
         showIcon: true,
       })}
+      tabBarOptions={{
+        activeTintColor: 'green',
+      }}
       >
       {
         screens.map(item => (
