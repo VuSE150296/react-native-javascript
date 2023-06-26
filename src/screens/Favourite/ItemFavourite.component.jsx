@@ -5,7 +5,7 @@ import { asyncStorage } from "../../data/asyncStorage";
 
 export default function ItemFavourite({ data }) {
 
-    const addToFavourite = async () => {
+    const removeToFavourite = async () => {
         const old = await asyncStorage.retrieveData("favouriteLists")
         let oldFavouriteLists = JSON.parse(old || '[]') || [];
         oldFavouriteLists = oldFavouriteLists.filter(item => item.id != data.id)
@@ -25,7 +25,7 @@ export default function ItemFavourite({ data }) {
                 <Text>{data.price} $</Text>
             </View>
 
-            <Pressable onPress={() => addToFavourite()} key={data.id}>
+            <Pressable onPress={() => removeToFavourite()} key={data.id}>
                 <View className="absolute bottom-2 right-2 rounded-full p-1" >
                     <Ionicons size={24} name="close-circle" color="red" />
                 </View>

@@ -10,16 +10,21 @@ export default function ProductDetailScreen({ navigation, route: { params: { pro
     const isFocused = useIsFocused();
     const [isFavorite, setIsFavorite] = useState(false)
     const addToFavourite = async () => {
-        const old = await asyncStorage.retrieveData("favouriteLists")
-        const oldFavouriteLists = JSON.parse(old || '[]') || [];
-        if (oldFavouriteLists.findIndex(item => item.id == product.id) < 0)
-            oldFavouriteLists.push(product);
+        const old = await asyncStorage.retrieveData("favouriteLists");
+        let oldFavouriteLists = JSON.parse(old || '[]') || [];
+        if (isFavorite == false) {
+            if (oldFavouriteLists.findIndex(item => item.id == product.id) < 0)
+                oldFavouriteLists.push(product);
+        } else {
+            oldFavouriteLists = oldFavouriteLists.filter(item => item.id != product.id)
+        }
         await asyncStorage.storeData("favouriteLists", JSON.stringify(oldFavouriteLists))
         setIsFavorite(await ProductService.checkIsFavorite(product.id))
+
     }
     useEffect(() => {
         ProductService.checkIsFavorite(product.id).then(res => setIsFavorite(res))
-    }, [props,isFocused])
+    }, [props, isFocused])
     return (
 
         <View className="px-4 mt-12">
