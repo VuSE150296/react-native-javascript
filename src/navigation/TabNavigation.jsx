@@ -2,16 +2,15 @@
 
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ContactStackNavigator, FavouriteStackNavigator, HomeStackNavigator } from "./StatckNavigator";
+import {  FavouriteStackNavigator, HomeStackNavigator } from "./StatckNavigator";
 import { Ionicons } from '@expo/vector-icons';
-import FavouriteScreen from "../screens/Favourite/Favourite.screen";
-
 
 const Tab = createBottomTabNavigator();
 const screens = [
   {
     tabBarLabel: "Home",
     component: HomeStackNavigator,
+    initialParams: { screen: "Home" },
     tabBarIcon: ({ color, size }) => (
       <Ionicons name="home" color={color} size={size} />
     ),
@@ -31,13 +30,15 @@ const BottomTabNavigator = () => {
         headerShown: false,
         showIcon: true,
       })}
-      >
+    >
       {
         screens.map(item => (
           <Tab.Screen key={item.tabBarLabel} name={item.tabBarLabel} component={item.component} options={{
             tabBarLabel: item.tabBarLabel,
             tabBarIcon: item.tabBarIcon
-          }} />
+          }}
+            initialParams={item.initialParams}
+          />
         ))
       }
     </Tab.Navigator>

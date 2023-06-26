@@ -12,18 +12,13 @@ import FavouriteScreen from "../screens/Favourite/Favourite.screen";
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
-  // headerShown: false,
-  // headerStyle: {
-  //   backgroundColor: "#9AC4F8",
-  // },
-  // headerTintColor: "white",
-  // headerBackTitle: "Back",
 
   header: (headerData) => <CustomHeader headerData={headerData} />,
 
 };
 
-const HomeStackNavigator = () => {
+const HomeStackNavigator = ({navigation,...props}) => {
+
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Home" component={Home} />
