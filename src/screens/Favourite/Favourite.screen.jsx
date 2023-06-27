@@ -14,6 +14,11 @@ export default function FavouriteScreen() {
         fetchData();
     });
 
+     const removeAllFromFavourite = async() => {
+        await asyncStorage.removeData("favouriteLists")
+    }
+
+
     return (
         <View className="px-4 mt-12">
             <ScrollView
@@ -30,7 +35,12 @@ export default function FavouriteScreen() {
                     })
                 }
             </ScrollView>
-
+            {favouriteLists.length>0?
+            <Pressable onPress={() => removeAllFromFavourite()}>
+                <View className="bg-green-900" >
+                    <Text className='text-center text-2xl text-white p-2 rounded-lg'>Clear all</Text>
+                </View>
+            </Pressable>:''}
 
         </View >
     );

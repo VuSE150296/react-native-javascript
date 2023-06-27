@@ -10,11 +10,14 @@ export default function ItemCard({ data, image }) {
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.3, 
             shadowRadius: 4, 
-            elevation: 5, }}>
-            <Image
-                source={data.imageUrl}
-                style={{ width: 100, height: 100 }}
-            />
+            elevation: 5,
+        }}>
+            <View style={{paddingBottom:5}}>
+                <Image
+                    source={data.imageUrl}
+                    style={{ width: 100, height: 100 }}
+                />
+            </View>
             <View style={{ paddingLeft: 4, justifyContent: 'space-evenly' }}>
                 <View>
                     <Text numberOfLines={1} style={{ width: 160, fontWeight: 'bold', fontSize: 16 }}>{data.name}</Text>

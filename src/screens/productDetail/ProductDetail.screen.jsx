@@ -34,8 +34,9 @@ export default function ProductDetailScreen({ navigation, route: { params: { pro
         checkFavour()
     })
 
+   
     return (
-
+    <View key={product.id}>
         <View className="px-4 mt-12 gap-5">
             <View className="shadow-xl shadow-cyan-200 w-fit h-fit">
                 <View className="w-full h-96 rounded-3xl overflow-hidden relative">
@@ -43,7 +44,7 @@ export default function ProductDetailScreen({ navigation, route: { params: { pro
                         source={product.imageUrl}
                         className="w-full h-full object-fill"
                     />
-                    <Pressable onPress={() => addToFavourite()} key={product.id}>
+                    <Pressable onPress={() => addToFavourite()}>
                         <View className="absolute bottom-2 right-2 bg-red-800 rounded-full p-1" onPress >
                             {isFavorite ?
                                 (<Ionicons size={24} name="heart" color="white" />)
@@ -61,7 +62,7 @@ export default function ProductDetailScreen({ navigation, route: { params: { pro
                 <Text className='text-xl font-normal'>{product.description}</Text>
             </View>
         </View >
-
-
+        
+    </View>
     );
 }
